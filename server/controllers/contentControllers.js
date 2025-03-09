@@ -13,6 +13,8 @@ const saveContent = async(req, res) => {
             return res.status(400).json({message: " url are required"})
         }
 
+        console.log("this is title", title);
+        console.log("this is url", url)
         const new_content = new  Content({
             title: title, 
             url: url
@@ -20,7 +22,7 @@ const saveContent = async(req, res) => {
 
         await new_content.save();
 
-        return res.status(204).json({message: "content saved successfully"});
+        return res.status(201).json({message: "content saved successfully"});
     } catch (error) {
         console.log("Internal Server Error", error);
         return res.status(500).json({message: "Internal Server error"});

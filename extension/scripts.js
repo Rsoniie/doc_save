@@ -7,13 +7,13 @@ const handleSave = async () => {
         }
 
         const { title, url } = response;
-        alert("Title: " + title);
-        alert("URL: " + url);
+        // alert("Title: " + title);
+        // alert("URL: " + url);
 
         const payload = { title, url };
         
         try {
-                await fetch("http://localhost:3000/content/api/save", {
+                const res = await fetch("http://localhost:3000/content/api/save", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
