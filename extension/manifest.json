@@ -1,8 +1,11 @@
 {
     "manifest_version": 3,
-    "name": "Floating button Checker",
+    "name": "Floating Button Checker",
     "version": "1.0",
-    "permissions": [],
+    "permissions": ["activeTab", "tabs", "scripting"],
+    "background": {
+        "service_worker": "background.js"
+    },
     "action": {
         "default_popup": "popup.html",
         "default_icon": "icon.png"

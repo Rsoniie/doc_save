@@ -3,8 +3,15 @@ import Content from "../models/contentSchema.js";
 const saveContent = async(req, res) => {
     try {
 
-        const title = "Rough";
-        const url = "randon_url";
+        // const title = "Rough";
+        // const url = "randon_url";
+
+        const {title, url} = req.body;
+
+        if(!url)
+        {
+            return res.status(400).json({message: " url are required"})
+        }
 
         const new_content = new  Content({
             title: title, 
