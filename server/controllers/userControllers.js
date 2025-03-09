@@ -2,7 +2,7 @@ import { mongo } from "mongoose";
 import User from "../models/userSchema.js";
 import bcrypt, { genSalt, hash } from "bcrypt";
 
-const checking = async(req, res) => {
+const checking = async (req, res) => {
   const username = "Rough";
   const newUser = new User({
     username: username,
@@ -25,24 +25,20 @@ const Login = async (req, res) => {
       }
     }
 
-    const user = await User.findOne({username});
-    if(!user)
-    {
-        return res.status(204).json({message: "No user found"});
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(204).json({ message: "No user found" });
     }
 
     const user_pass = user.password;
 
-    const match =  await bcrypt.compare(password, user_pass);
-    console.log(match)
-    if(match)
-    {
-        return res.status(200).json({message: "User found successfully", user});
+    const match = await bcrypt.compare(password, user_pass);
+    console.log(match);
+    if (match) {
+      return res.status(200).json({ message: "User found successfully", user });
     }
 
-    return res.status(400).json({message : "Password is incorrect"});
-
-    
+    return res.status(400).json({ message: "Password is incorrect" });
   } catch (error) {
     console.log("Internal server error", error);
     return res.status(500).json({ message: "Internal server error" });
