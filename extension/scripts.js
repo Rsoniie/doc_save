@@ -1,10 +1,12 @@
 
 
+const view = document.getElementById("viewButton");
 const categoriesModal = document.querySelector('.modal');
 categoriesModal.style.display = 'none';
 
 const handleSaveAs = () => {
   categoriesModal.style.display = 'block';
+  view.style.display = 'none';
 };
 
 const handleSave = async () => {
@@ -47,6 +49,11 @@ const handleSave = async () => {
   });
 };
 
+const handleView = async () => {
+  window.open("http://localhost:5173/", "_blank");
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("floatButton");
   if (button) {
@@ -58,3 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmBtn = document.getElementById("confirmSave");
   confirmBtn.addEventListener("click", handleSave);
 });
+
+view.addEventListener("click", handleView);
+
