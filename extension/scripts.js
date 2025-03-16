@@ -52,7 +52,7 @@ const handleSave = async () => {
 const handleView = async () => {
   window.open("http://localhost:5173/", "_blank");
 
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("floatButton");
