@@ -1,9 +1,17 @@
+
+
+const categoriesModal = document.querySelector('.modal');
+categoriesModal.style.display = 'none';
+
+const handleSaveAs = () => {
+  categoriesModal.style.display = 'block';
+};
+
 const handleSave = async () => {
+  const categoryElement = document.querySelector('#categorySelect');
+  const selectedCategory = categoryElement.value;
 
-
-
-  categories.style.display = 'block';
-
+  console.log("Selected Category:", selectedCategory); 
 
   chrome.runtime.sendMessage({ action: "getTabInfo" }, async (response) => {
     if (response.error) {
@@ -11,12 +19,11 @@ const handleSave = async () => {
       return;
     }
 
-    const category = document.querySelector('#categorySelect');
-    console.log(category.value);
-
-
     const { title, url } = response;
-    const payload = { title, url };
+    
+    const payload = { title, url, category: selectedCategory }; 
+
+    console.log("Payload Sent:", payload);
 
     try {
       const res = await fetch("http://localhost:3000/content/api/save", {
@@ -26,11 +33,13 @@ const handleSave = async () => {
         },
         body: JSON.stringify(payload),
       });
+
       if (!res.ok) {
         throw new Error("Network response was not ok: " + res.statusText);
       }
 
       alert("Saved Successfully");
+      categoriesModal.style.display = 'none'; 
     } catch (err) {
       console.log("Error in saving", err);
       alert("Failed to save. Check the console.");
@@ -38,15 +47,14 @@ const handleSave = async () => {
   });
 };
 
-
-const categories = document.querySelector('.modal')
-categories.style.display = 'none';
-
 document.addEventListener("DOMContentLoaded", () => {
   const button = document.getElementById("floatButton");
   if (button) {
-    button.addEventListener("click", handleSave);
+    button.addEventListener("click", handleSaveAs);
   } else {
     console.error("Button not found!");
   }
+
+  const confirmBtn = document.getElementById("confirmSave");
+  confirmBtn.addEventListener("click", handleSave);
 });

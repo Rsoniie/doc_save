@@ -8,6 +8,7 @@ const saveContent = async (req, res) => {
     // const url = "randon_url";
 
     const { title, url, category } = req.body;
+    console.log("This is category", category);
 
     if (!url) {
       return res.status(400).json({ message: " url are required" });
@@ -17,8 +18,7 @@ const saveContent = async (req, res) => {
     console.log("this is url", url);
     const new_content = new Content({
       title: title,
-      url: url,
-      category: category,
+      url: url
     });
 
     await new_content.save();
