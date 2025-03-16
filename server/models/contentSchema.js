@@ -8,6 +8,12 @@ const contentSchema = new mongoose.Schema({
     url: {
         type : String, 
         Required: true
+    },
+    category : {
+
+        type : String,
+        Required: true,
+        default : 'Others'
     }
 })
 

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -12,7 +12,13 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     Required: true
-  }
+  },
+  categories: [
+    {
+        type: Map,
+        of: [{ type: mongoose.Schema.Types.ObjectId, ref: "Content" }]
+    }
+]
 });
 
 const User = mongoose.model("User", UserSchema);

@@ -1,6 +1,7 @@
 import { mongo } from "mongoose";
 import User from "../models/userSchema.js";
 import bcrypt, { genSalt, hash } from "bcrypt";
+import localStorage from "localStorage";
 
 const checking = async (req, res) => {
   const username = "Rough";
@@ -35,6 +36,8 @@ const Login = async (req, res) => {
     const match = await bcrypt.compare(password, user_pass);
     console.log(match);
     if (match) {
+
+      localStorage.setItem("user_name", username);
       return res.status(200).json({ message: "User found successfully", user });
     }
 

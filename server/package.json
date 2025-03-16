@@ -4,7 +4,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "localStorage": "^1.0.4",
     "mongoose": "^8.12.1",
+    "node-localstorage": "^3.0.5",
     "nodemon": "^3.1.9"
   },
   "type": "module",
