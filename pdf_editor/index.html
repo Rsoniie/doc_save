@@ -1,0 +1,151 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Editor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .canvas-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+      background: #f0f0f0;
+    }
+    .toolbar {
+      padding: 10px;
+      background: #ddd;
+    }
+    .toolbar button,
+    .toolbar input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button id="open-btn">Open PDF</button>
+    <input type="file" id="pdf-upload" style="display:none" accept="application/pdf" />
+    <button id="highlight-btn">Highlight</button>
+    <button id="text-btn">Add Text</button>
+    <input type="color" id="highlight-color" value="#FFFF00" />
+    <input type="range" id="highlight-opacity" min="0" max="1" step="0.1" value="0.5" />
+    <input type="number" id="highlight-width" value="20" style="width: 60px" />
+    <input type="color" id="text-color" value="#000000" />
+    <input type="text" id="text-font" value="Arial" style="width: 80px" />
+    <input type="number" id="text-size" value="20" style="width: 60px" />
+    <button id="save-btn">Save</button>
+    <button id="clear-btn">Clear</button>
+    <button id="prev-page">Prev Page</button>
+    <button id="next-page">Next Page</button>
+    <span id="page-num"></span>
+    <span id="pdf-info"></span>
+    <button id="zoom-in">Zoom In</button>
+    <button id="zoom-out">Zoom Out</button>
+    <button id="zoom-reset">Reset Zoom</button>
+    <span id="zoom-level"></span>
+  </div>
+  <div class="canvas-container">
+    <canvas id="pdf-canvas"></canvas>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Editor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    .toolbar {
+      background: #333;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .toolbar button,
+    .toolbar input[type="color"],
+    .toolbar input[type="number"],
+    .toolbar input[type="range"],
+    .toolbar input[type="text"] {
+      background: #444;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      margin: 0 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .toolbar button:hover,
+    .toolbar input:hover {
+      background: #555;
+    }
+    /* The container now fills the remaining viewport below the toolbar and scrolls if needed */
+    .canvas-container {
+      width: 100vw;
+      height: calc(100vh - 60px); /* assuming toolbar height is ~60px */
+      overflow: auto;
+      background: #e0e0e0;
+      position: relative;
+    }
+    /* Center the canvas horizontally (vertical centering is not applied when PDF is larger) */
+    #pdf-canvas {
+      display: block;
+      margin: 20px auto;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button id="open-btn">Open PDF</button>
+    <input type="file" id="pdf-upload" style="display:none" accept="application/pdf" />
+    <button id="highlight-btn">Highlight</button>
+    <button id="text-btn">Add Text</button>
+    <input type="color" id="highlight-color" value="#FFFF00" />
+    <input type="range" id="highlight-opacity" min="0" max="1" step="0.1" value="0.5" />
+    <input type="number" id="highlight-width" value="20" style="width: 60px" />
+    <input type="color" id="text-color" value="#000000" />
+    <input type="text" id="text-font" value="Arial" style="width: 80px" />
+    <input type="number" id="text-size" value="20" style="width: 60px" />
+    <button id="save-btn">Save</button>
+    <button id="clear-btn">Clear</button>
+    <button id="prev-page">Prev Page</button>
+    <button id="next-page">Next Page</button>
+    <span id="page-num"></span>
+    <span id="pdf-info"></span>
+    <button id="zoom-in">Zoom In</button>
+    <button id="zoom-out">Zoom Out</button>
+    <button id="zoom-reset">Reset Zoom</button>
+    <span id="zoom-level"></span>
+  </div>
+  <div class="canvas-container">
+    <canvas id="pdf-canvas"></canvas>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
